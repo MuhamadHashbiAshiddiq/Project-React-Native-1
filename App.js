@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Focus } from "./src/features/focus/Focus";
 
 export default function App() {
@@ -10,8 +10,9 @@ export default function App() {
       {focusSubject ? (
         <Text>Here is where im going to build a timer</Text>
       ) : (
-        <Focus />
+        <Focus addSubject={setFocusSubject} />
       )}
+      <Text>{focusSubject}</Text>
     </View>
   );
 }
