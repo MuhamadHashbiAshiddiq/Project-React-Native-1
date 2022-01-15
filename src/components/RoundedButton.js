@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
 } from "react-native";
+import {fontSize, paddingSizes} from "../utils/sizes"
 
 export const RoundedButton = ({
   style = {},
@@ -27,6 +28,7 @@ const styles = (size) =>
       width: size,
       height: size,
       alignItems: "center",
+      justifyContent:"center",
       borderColor: "#fff",
       borderWidth: 2,
     },

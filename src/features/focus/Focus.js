@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
 import { RoundedButton } from "../../components/RoundedButton";
+import { fontSize, paddingSizes, spacing } from "../../utils/sizes";
+import { colors } from "../../utils/colors";
 
 export const Focus = ({ addSubject }) => {
   const [tmpItem, setTmpItem] = useState(null);
@@ -13,7 +15,7 @@ export const Focus = ({ addSubject }) => {
         </Text>
         <View style={styles.inputContainer}>
           <TextInput
-            style={{ flex: 1, marginRight: 20 }}
+            style={{ flex: 1, marginRight: spacing.md }}
             onnSubmitEditing={({ nativeEvent }) => {
               setTmpItem(nativeEvent.text);
             }}
@@ -38,18 +40,18 @@ const styles = StyleSheet.create({
 
   titleContainer: {
     flex: 0.5,
-    padding: 16,
+    padding: paddingSizes.md,
     justifyContent: "center",
   },
 
   title: {
-    color: "white",
+    color: colors.white,
     fontWeight: "bold",
-    fontSize: 24,
+    fontSize: fontSize.lg,
   },
 
   inputContainer: {
-    paddingTop: 20,
+    paddingTop: paddingSizes.md,
     flexDirection: "row",
     alignItems: "center",
   },
