@@ -8,7 +8,9 @@ import { paddingSizes } from "../../utils/sizes";
 export const Timer = ({ focusSubject }) => {
   return (
     <View style={styles.container}>
+    <View style={styles.countdown}>
       <Countdown />
+    </View>
       <View style={{ paddingTop: paddingSizes.xxl }}>
         <Text style={styles.title}>Focusing on:</Text>
         <Text style={styles.task}>{focusSubject}</Text>
@@ -30,4 +32,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
+  countdown: {
+    flex: 0.5,
+    alignItems: "center",
+    justifyContent: "center",
+  }
 });
