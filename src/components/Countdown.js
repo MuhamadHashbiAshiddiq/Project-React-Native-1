@@ -9,7 +9,7 @@ const formatTime = (time) =>
   time < 10 ? `0${time}` : time;
 
 export const Countdown = ({
-  minutes = 20,
+  minutes = 0.1,
   isPaused,
   onProgress,
 }) => {
@@ -28,7 +28,13 @@ export const Countdown = ({
   };
 
   useEffect(() => {
+    setMills(minutesToMills(minutes));
+  }, [minutes])
+
+
+  useEffect(() => {
     if(isPaused) {
+      if(interval.current) clearInterval(interval.current)
       return
     }
     interval.current = setInterval(countDown, 1000);
