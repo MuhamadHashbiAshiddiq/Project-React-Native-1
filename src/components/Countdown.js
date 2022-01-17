@@ -20,7 +20,6 @@ export const Countdown = ({
     setMills((time) => {
       if (time === 0) {
         clearInterval(interval.current);
-        onEnd();
         return time;
       }
       const timeLeft = time - 1000;
@@ -34,6 +33,9 @@ export const Countdown = ({
 
   useEffect(() => {
     onProgress(mills / minutesToMills(minutes));
+    if (mills === 0) {
+      onEnd();
+    }
   }, [mills]);
 
   useEffect(() => {
