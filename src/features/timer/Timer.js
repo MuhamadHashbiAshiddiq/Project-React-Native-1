@@ -17,7 +17,7 @@ import { paddingSizes } from "../../utils/sizes";
 import { Timing } from "./Timing";
 
 const DEFAULT_TIME = 0.1;
-export const Timer = ({ focusSubject, onTimerEnd }) => {
+export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
   useKeepAwake();
 
   const interval = React.useRef(null);
@@ -92,6 +92,13 @@ export const Timer = ({ focusSubject, onTimerEnd }) => {
           />
         )}
       </View>
+      <View style={styles.clearSubject}>
+        <RoundedButton
+          title="Clear"
+          size={50}
+          onPress={() => clearSubject()}
+        />
+      </View>
     </View>
   );
 };
@@ -120,5 +127,9 @@ const styles = StyleSheet.create({
     padding: paddingSizes.md,
     justifyContent: "center",
     alignItems: "center",
+  },
+  clearSubject: {
+    paddingBottom: 20,
+    paddingLeft: 25,
   },
 });
