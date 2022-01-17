@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Focus } from "./src/features/focus/Focus";
 import { FocusHistory } from "./src/features/focus/FocusHistory";
@@ -26,13 +27,46 @@ export default function App() {
     setFocusHistory([]);
   };
 
-  useEffect(() => {
-    if (focusSubject) {
-      setFocusHistory([...focusHistory, focusSubject]);
+  const saveFocusHistory = async () => {
+    try {
+      await AsyncStorage.setItem(
+        "focusHistory",
+        JSON.stringify(focusHistory)
+      );
+    } catch (e) {
+      console.log(e);
     }
-  }, [focusSubject]);
+  };
 
-  console.log(focusHistory);
+  const loadFocusHistory = async () => {
+    try {
+      const history = await AsyncStorage.getItem(
+        "focusHistory"
+      );
+
+      if (history && JSON.parse(history).length) {
+        setFocusHistory(JSON.parse(history));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    loadFocusHistory();
+  }, []);
+
+  useEffect(() => {
+    saveFocusHistory();
+  }, [focusHistory]);
+
+  // useEffect(() => {
+  //   if (focusSubject) {
+  //     setFocusHistory([...focusHistory, focusSubject]);
+  //   }
+  // }, [focusSubject]);
+  // console.log(focusHistory);
+
   return (
     <View style={styles.container}>
       {focusSubject ? (
