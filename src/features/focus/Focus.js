@@ -20,17 +20,18 @@ export const Focus = ({ addSubject }) => {
         <View style={styles.inputContainer}>
           <TextInput
             style={{ flex: 1, marginRight: spacing.md }}
-            onSubmitEditing={({ nativeEvent }) => {
+            onChange={({ nativeEvent }) => {
               setSubject(nativeEvent.text);
-              console.log("subject value set " + subject);
+              // console.log("subject value set " + subject);
             }}
           />
           <RoundedButton
             size={50}
             title="+"
             onPress={() => {
-              console.log("value passed!");
+              // console.log("value passed!");
               addSubject(subject);
+              // console.log(subject);
             }}
           />
         </View>
