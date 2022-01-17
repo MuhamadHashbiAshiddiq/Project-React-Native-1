@@ -5,9 +5,20 @@ import { Timer } from "./src/features/timer/Timer";
 import { colors } from "./src/utils/colors";
 import { paddingSizes } from "./src/utils/sizes";
 
+const STATUSES = {
+  COMPLETE: 1,
+  CANCELLED: 2,
+};
 export default function App() {
   const [focusSubject, setFocusSubject] = useState();
   const [focusHistory, setFocusHistory] = useState([]);
+
+  const addFocusHistorySubjectWithState = (
+    subject,
+    status
+  ) => {
+    setFocusHistory([...focusHistory, { subject, status }]);
+  };
 
   useEffect(() => {
     if (focusSubject) {
@@ -22,9 +33,19 @@ export default function App() {
         <Timer
           focusSubject={focusSubject}
           onTimerEnd={() => {
+            addFocusHistorySubjectWithState(
+              focusSubject,
+              STATUSES.COMPLETE
+            );
             setFocusSubject(null);
           }}
-          clearSubject={() => setFocusSubject(null)}
+          clearSubject={() => {
+            addFocusHistorySubjectWithState(
+              focusSubject,
+              STATUSES.CANCELLED
+            );
+            setFocusSubject(null);
+          }}
         />
       ) : (
         <Focus addSubject={setFocusSubject} />
