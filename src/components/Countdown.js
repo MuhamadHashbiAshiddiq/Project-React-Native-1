@@ -12,32 +12,34 @@ export const Countdown = ({
   minutes = 0.1,
   isPaused,
   onProgress,
-  onEnd
+  onEnd,
 }) => {
   const interval = React.useRef(null);
 
   const countDown = () => {
     setMills((time) => {
       if (time === 0) {
-        clearInterval(interval.current)
+        clearInterval(interval.current);
         onEnd();
         return time;
       }
       const timeLeft = time - 1000;
-      onProgress(timeLeft / minutesToMills(minutes));
       return timeLeft;
     });
   };
 
   useEffect(() => {
     setMills(minutesToMills(minutes));
-  }, [minutes])
-
+  }, [minutes]);
 
   useEffect(() => {
-    if(isPaused) {
-      if(interval.current) clearInterval(interval.current)
-      return
+    onProgress(mills / minutesToMills(minutes));
+  }, [mills]);
+
+  useEffect(() => {
+    if (isPaused) {
+      if (interval.current) clearInterval(interval.current);
+      return;
     }
     interval.current = setInterval(countDown, 1000);
 
