@@ -23,8 +23,8 @@ export default function App() {
   };
 
   const onClear = () => {
-    // things i do
-  }
+    setFocusHistory([]);
+  };
 
   useEffect(() => {
     if (focusSubject) {
@@ -55,8 +55,11 @@ export default function App() {
         />
       ) : (
         <>
-        <Focus addSubject={setFocusSubject} />
-        <FocusHistory focusHistory={focusHistory} onClear={onClear}/>
+          <Focus addSubject={setFocusSubject} />
+          <FocusHistory
+            focusHistory={focusHistory}
+            onClear={onClear}
+          />
         </>
       )}
     </View>

@@ -16,7 +16,6 @@ const HistoryItem = ({ item, index }) => {
   return (
     <Text style={styles.historyItem(item.status)}>
       {item.subject}
-      {/* {JSON.stringify(item)} */}
     </Text>
   );
 };
@@ -45,6 +44,13 @@ export const FocusHistory = ({ focusHistory, onClear }) => {
               data={focusHistory}
               renderItem={HistoryItem}
             />
+            <View style={styles.clearContainer}>
+              <RoundedButton
+                size={75}
+                title="Clear"
+                onPress={() => onClear()}
+              />
+            </View>
           </>
         )}
       </SafeAreaView>
@@ -60,5 +66,9 @@ const styles = StyleSheet.create({
   title: {
     color: colors.white,
     fontSize: fontSize.lg,
+  },
+  clearContainer: {
+    alignItems: "center",
+    padding: paddingSizes.md,
   },
 });
