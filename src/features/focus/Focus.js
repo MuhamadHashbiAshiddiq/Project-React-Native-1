@@ -10,7 +10,7 @@ import {
 import { colors } from "../../utils/colors";
 
 export const Focus = ({ addSubject }) => {
-  const [tmpItem, setTmpItem] = useState();
+  const [subject, setSubject] = useState();
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -21,8 +21,8 @@ export const Focus = ({ addSubject }) => {
           <TextInput
             style={{ flex: 1, marginRight: spacing.md }}
             onSubmitEditing={({ nativeEvent }) => {
-              setTmpItem(nativeEvent.text);
-              console.log("tmpItem value set " + tmpItem);
+              setSubject(nativeEvent.text);
+              console.log("subject value set " + subject);
             }}
           />
           <RoundedButton
@@ -30,7 +30,7 @@ export const Focus = ({ addSubject }) => {
             title="+"
             onPress={() => {
               console.log("value passed!");
-              addSubject(tmpItem);
+              addSubject(subject);
             }}
           />
         </View>

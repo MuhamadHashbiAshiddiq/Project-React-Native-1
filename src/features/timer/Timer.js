@@ -17,7 +17,7 @@ import { paddingSizes } from "../../utils/sizes";
 import { Timing } from "./Timing";
 
 const DEFAULT_TIME = 0.1;
-export const Timer = ({ focusSubject }) => {
+export const Timer = ({ focusSubject, onTimerEnd }) => {
   useKeepAwake();
 
   const interval = React.useRef(null);
@@ -29,7 +29,7 @@ export const Timer = ({ focusSubject }) => {
     setProgress(progress);
   };
 
-  const vibrate = (vibrate) => {
+  const vibrate = () => {
     if (Platform.OS === "ios") {
       const interval = setInterval(
         () => Vibration.vibrate(),
@@ -46,7 +46,7 @@ export const Timer = ({ focusSubject }) => {
     setMinutes(DEFAULT_TIME);
     setProgress(1);
     setIsStarted(false);
-    // onTimerEnd();
+    onTimerEnd();
   };
 
   const changeTime = (min) => {
